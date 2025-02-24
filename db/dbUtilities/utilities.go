@@ -3,7 +3,7 @@ package dbUtilities
 import (
 	"log"
 
-	"github.com/glennsills/yact/internal/dataaccess/users_db"
+	"github.com/glennsills/yact/db/users_db"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )

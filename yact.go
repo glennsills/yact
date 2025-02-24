@@ -4,7 +4,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/glennsills/yact/internal/dataaccess/users_db"
+	"github.com/glennsills/yact/db/users_db"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

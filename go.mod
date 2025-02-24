@@ -2,7 +2,11 @@ module github.com/glennsills/yact
 
 go 1.24.0
 
-require gorm.io/gorm v1.25.10
+require (
+	gorm.io/driver/postgres v1.5.11
+	gorm.io/driver/sqlite v1.5.7
+	gorm.io/gorm v1.25.10
+)
 
 require (
 	github.com/jackc/pgpassfile v1.0.0 // indirect
@@ -15,6 +19,4 @@ require (
 	golang.org/x/crypto v0.17.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
-	gorm.io/driver/postgres v1.5.11 // indirect
-	gorm.io/driver/sqlite v1.5.7 // indirect
 )
