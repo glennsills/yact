@@ -25,3 +25,6 @@ go.work.sum
 .env
 sqlite/yact-sqlite.db
 yact
+
+#random stuff to ignore
+test.txt
