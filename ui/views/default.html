@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YACT</title>
+    <script src="https://unpkg.com/htmx.org@1.6.1"></script>
 </head>
 
 <body>
@@ -13,14 +14,14 @@
         <nav>
 
             <a href="/">Home</a>
-
-            <a href="/users">List Users</a>
-
-            <a href="/user" class="current">New User</a>
+            <a class="tab" hx-get="/users" hx-target="#content">List Users</div>
+            <a class="tab" hx-post="/user" hx-target="#content">New User</a>
+            <a class="tab" hx-delete="/user/1" hx-target="#content">Delete User</a>
 
         </nav>
     </header>
-    <main>
+    <main id="content" class="content">
+        <p>Good stuff goes here</p>
 
     </main>
 

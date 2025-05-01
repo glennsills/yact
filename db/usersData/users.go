@@ -1,6 +1,7 @@
-package users_db
+package userData
 
 import (
+	"errors"
 	"time"
 
 	"gorm.io/gorm"
@@ -11,7 +12,7 @@ type Repository interface {
 	UpdateUser(user *User) error
 	// GetUserById(id uint) (*User, error)
 	DeleteUserById(id uint) error
-	// ListActiveUsers(start uint, end uint) ([]*User, error)
+	ListActiveUsers(start uint, end uint) ([]*User, error)
 }
 
 type UserRepository struct {
@@ -38,12 +39,33 @@ type User struct {
 	Active      bool
 }
 
-func (r UserRepository) CreateUser(user *User) error {
-	result := r.DB.Create(user)
-	if result.Error != nil {
-		return result.Error
+func (r UserRepository) CreateUser(email string, firstName string, lastName string, dateOfBirth string, phone string, officePhone string) (*User, error) {
+
+	// TODO: Handle field validation better
+
+	if len(dateOfBirth) == 10 && len(phone) == 10 && (len(officePhone) == 10 || len(officePhone) == 0) {
+		dob, err := time.Parse("2006-01-02", dateOfBirth)
+		if err != nil {
+			return nil, err
+		} else {
+			user := User{
+				UserName:    email,
+				FirstName:   firstName,
+				LastName:    lastName,
+				Email:       email,
+				Dob:         &dob,
+				MobilePhone: phone,
+				OfficePhone: officePhone,
+			}
+			result := r.DB.Create(user)
+			if result.Error != nil {
+				return nil, result.Error
+			}
+			return &user, nil
+		}
+	} else {
+		return nil, errors.New("invalid input parameter")
 	}
-	return nil
 }
 
 func (r UserRepository) UpdateUser(user *User) {
@@ -56,4 +78,8 @@ func (r UserRepository) DeleteUserById(id uint) error {
 		return result.Error
 	}
 	return nil
+}
+
+func ListActiveUsers(start uint, end uint) ([]*User, error) {
+	return nil, nil
 }

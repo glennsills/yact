@@ -1,27 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YACT</title>
-</head>
-
-<body>
-    <header>
-        <nav>
-
-            <a href="/">Home</a>
-        </nav>
-    </header>
-    <main>
-        <p>More here later</p>
-    </main>
-
-    <footer>
-        <p>Placeholder User List Page</p>
-    </footer>
-</body>
-
-</html>
+<div hx-target="#content">
+    <table>
+        <caption>Active Users</caption>
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone</th>
+                <th>Office Phone</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody hx-target="this">
+            {{range .List}}
+            <tr>
+                <td>{{.Email}}</td>
+                <td>{{.FirstName}}</td>
+                <td>{{.LastName}}</td>
+                <td>{{.Phone}}</td>
+                <td>{{.OfficePhone}}</td>
+                <td><a hx-get="./user/{{.ID}}" hx-swap="#content">...</a></td>
+            </tr>
+            {{end}}
+        </tbody>
+    </table>
+    <div>
+        {{if .PrevPage}}
+        <a hx-get="./users/?page={{.PrevPage}}" hx-swap="tbody">Previous</a>
+        {{end}}
+        {{if .NextPage}}
+        <a hx-get="./users/?page={{.NextPage}}" hx-swap="tbody">Next</a>
+        {{end}}
+    </div>
+</div>
