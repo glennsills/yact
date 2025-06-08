@@ -11,7 +11,7 @@
             "mode": "debug",
             "program": "${file}",
             "env": {
-                "GORM_DSN": "host=database-1.c7im4k02oirc.us-east-2.rds.amazonaws.com dbname=yact port=5432 user=postgres password=SuperSecret dbname=yact sslmode=allow"
+                "GORM_DSN": "host=localhost user=yact password=password dbname=yactdb sslmode=disable"
             }
         },
         {
